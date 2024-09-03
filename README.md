@@ -36,15 +36,14 @@ Este repositorio contiene un script de C# diseñado para Unity (versión 2021.3.
 4. **Configurar el Dropdown en la UI**:
    - En tu escena, añade un componente `Dropdown` (legacy) a la UI.
    - Asigna el `Dropdown` al campo `dropdown` en el script `ResolutionSelector`.
-   - En el elemento `Dropdown` del inspector, al campo `On Value Changed (int32)` de valor `Runtime Only` arrastra el script `ResolutionSelector` y selecciona `ResolutionSelector` -> `OnDropdownValueChanged`
-
-Asegurate de tener la parte 4 de la siguiente manera:
-
-![Resolution Selector Script en el Inspector](.image/Inspector.png)
+5. **En el elemento `Dropdown` del inspector**:
+   - Al campo `On Value Changed (int32)` de valor `Runtime Only` arrastra el script `ResolutionSelector` y selecciona `ResolutionSelector` -> `OnDropdownValueChanged`
 
 ## Configuración en el Inspector
 
 Para que el script funcione correctamente, asegúrate de configurar los siguientes valores en el Inspector:
+
+![Resolution Selector Script en el Inspector](.image/Inspector.png)
 
 ![Configuración del Resolution Selector en el Inspector](.image/DropdownResolutionValues.png)
 
