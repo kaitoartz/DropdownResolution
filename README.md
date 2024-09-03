@@ -17,7 +17,7 @@ Este repositorio contiene un script de C# diseñado para Unity (versión 2021.3.
 
 ![Resolution Selector Script en el Inspector](.image/ResolutionSelector.png)
 
-*Vista del script Resolution Selector en el inspector de Unity*
+*Vista del Resolution Selector en el game de Unity*
 
 ## Características
 
@@ -38,7 +38,7 @@ Este repositorio contiene un script de C# diseñado para Unity (versión 2021.3.
    - Asigna el `Dropdown` al campo `dropdown` en el script `ResolutionSelector`.
    - En el elemento `Dropdown` del inspector, al campo `On Value Changed (int32)` de valor `Runtime Only` arrastra el script `ResolutionSelector` y selecciona `ResolutionSelector` -> `OnDropdownValueChanged`
 
-Para que el dropdown funcione, asegúrate de configurar los siguientes valores en el Inspector:
+Asegurate de tener la parte 4 de la siguiente manera:
 
 ![Resolution Selector Script en el Inspector](.image/Inspector.png)
 
