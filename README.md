@@ -1,66 +1,99 @@
-# Resolution Selector for Unity
 
-✨🌷 ¡Hola, pequeños devs!💖 Soy KaitoArtz, y estoy emocionado de compartir este proyecto contigo.
+# 🎛️ Resolution Selector for Unity
 
-‼🥺 **¿Quieres estar al día con mis próximos proyectos de Unity?** ¡Sígueme en mis redes sociales!
+[![Unity Version](https://img.shields.io/badge/Unity-2021.3.15f1%2B-blue.svg)](https://unity3d.com/get-unity/download)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux%20%7C%20SteamDeck-lightgrey)](#)
+[![Contributions](https://img.shields.io/badge/Contributions-Welcome-orange.svg)](CONTRIBUTING.md)
+[![Twitter Follow](https://img.shields.io/twitter/follow/K41t0M?style=social)](https://twitter.com/K41t0M)
 
-- [<img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" />](https://x.com/K41t0M)
-- [<img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" />](https://www.instagram.com/kaitoartzz/#)
-- [<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />](https://linkedin.com/in/TuPerfil)
-- [<img src="https://img.shields.io/badge/daily.dev-CE3DF3?style=for-the-badge&logo=dailydotdev&logoColor=white" />](https://app.daily.dev/kaitoartz)
-
-No te pierdas mis futuros proyectos que ayudarán a mejorar tus proyectos en Unity.
+> Un sencillo y eficiente selector de resolución para tus proyectos de Unity, compatible con múltiples plataformas y fácil de integrar.
 
 ---
+✨🌷 ¡Hola, pequeños devs!💖 Soy **KaitoArtz**, y estoy emocionado de compartir este proyecto contigo.
 
 Este repositorio contiene un script de C# diseñado para Unity (versión 2021.3.15f1 o superior) que permite a los desarrolladores agregar un selector de resolución a través de un menú desplegable (`Dropdown`) en la UI de Unity. Este script es ideal para proyectos que necesitan adaptarse a diferentes resoluciones de pantalla, incluyendo opciones específicas para Steam Deck y plataformas de escritorio.
 
-![Resolution Selector Script en el Inspector](.image/ResolutionSelector.png)
+![Resolution Selector en el game](https://github.com/user-attachments/assets/601be0a5-e0c8-4470-a8c2-3491fa1a751e)
 
-*Vista del Resolution Selector en el game de Unity*
+---
 
-## Características
+## 📖 Tabla de Contenidos
 
-- **Selector de Resolución**: Permite a los jugadores seleccionar entre múltiples resoluciones compatibles.
-- **Detección Automática de Cambios**: El script detecta automáticamente cambios en las pantallas conectadas y actualiza las opciones disponibles.
-- **Integración Sencilla**: Fácil de agregar y configurar en cualquier proyecto de Unity.
-- **Persistencia de Configuración**: La selección de resolución se guarda y se aplica automáticamente en futuras sesiones del juego.
+- [✨ Características](#-características)
+- [📦 Instalación](#-instalación)
+- [⚙️ Configuración](#️-configuración)
+- [🚀 Uso](#-uso)
+- [🖼️ Ejemplos Visuales](#️-ejemplos-visuales)
+- [📚 Documentación Detallada](#-documentación-detallada)
+- [🤝 Contribuciones](#-contribuciones)
+- [📄 Licencia](#-licencia)
+- [🔗 Enlaces de Interés](#-enlaces-de-interés)
+- [📞 Soporte](#-soporte)
 
-## Instalación
+---
 
-1. **Descargar el Script**: Clona este repositorio o descarga el archivo `ResolutionSelector.cs`.
-2. **Importar a Unity**: Coloca el archivo `ResolutionSelector.cs` en la carpeta `Scripts` de tu proyecto de Unity.
-3. **Agregar el Script a un GameObject**:
-   - Crea un nuevo `GameObject` vacío en tu escena o utiliza uno existente.
-   - Arrastra el script `ResolutionSelector` al `GameObject`.
-4. **Configurar el Dropdown en la UI**:
-   - En tu escena, añade un componente `Dropdown` (legacy) a la UI.
-   - Asigna el `Dropdown` al campo `dropdown` en el script `ResolutionSelector`.
-5. **En el elemento `Dropdown` del inspector**:
-   - Al campo `On Value Changed (int32)` de valor `Runtime Only` arrastra el script `ResolutionSelector` y selecciona `ResolutionSelector` -> `OnDropdownValueChanged`
+## ✨ Características
 
-## Configuración en el Inspector
+- **Compatibilidad Multiplataforma**: Funciona perfectamente en Windows, macOS, Linux y Steam Deck.
+  
+- **Detección Automática**: Detecta y actualiza automáticamente las resoluciones disponibles según los monitores conectados.
+  
+- **Interfaz de Usuario Amigable**: Integra un Dropdown intuitivo para que los usuarios seleccionen la resolución deseada.
+  
+- **Persistencia de Configuración**: Guarda y carga automáticamente la última resolución seleccionada.
+  
+- **Personalización Fácil**: Añade o elimina resoluciones soportadas según tus necesidades.
+  
+- **Manejo de Eventos**: Incluye eventos para responder a cambios de resolución en tiempo real.
+  
+> [!TIP]
+> **¿Sabías que...?** Este script también puede adaptarse para cambiar entre modos de pantalla completa y ventana con facilidad.
 
-Para que el script funcione correctamente, asegúrate de configurar los siguientes valores en el Inspector:
+---
 
-![Resolution Selector Script en el Inspector](.image/Inspector.png)
+## 📦 Instalación
 
-![Configuración del Resolution Selector en el Inspector](.image/DropdownResolutionValues.png)
+### Requisitos Previos
 
-*Configuración necesaria para el Resolution Selector en el Inspector de Unity*
+- **Unity** versión **2021.3.15f1** o superior.
+- Conocimiento básico de la interfaz de Unity y manejo de scripts.
 
-1. **Dropdown**: Asigna aquí tu `Dropdown` (legacy) de la UI.
-2. **Warning Panel**: Asigna un panel de advertencia que se muestre cuando se detecte un cambio en las pantallas conectadas.
-3. **Continue Button**: Asigna el botón que oculta el panel de advertencia y actualiza la configuración de resolución.
-4. **Resolution Text**: Asigna un `Text` para mostrar la resolución seleccionada.
+### Pasos de Instalación
 
-## Resoluciones Disponibles
+1. **Clona el Repositorio**
+   
+```bash
+git clone https://github.com/KaitoOwO/DropdownResolution.git
+```
 
-El script incluye diferentes listas de resoluciones para diversas plataformas, incluyendo Steam Deck y sistemas de escritorio (Windows, macOS, Linux). Puedes habilitar o modificar estas listas según tus necesidades:
+2. **Importa el Script a tu Proyecto**
 
-### Resoluciones para Steam Deck
+Copia el archivo `ResolutionSelector.cs` en la carpeta Scripts de tu proyecto de Unity.
 
-Si deseas usar resoluciones específicas para Steam Deck, puedes activar la siguiente lista en el script:
+3. **Añade el Componente a un GameObject**
+
+Crea un `GameObject` vacío en tu escena o utiliza uno existente.
+Arrastra y suelta el script `ResolutionSelector.cs` sobre el `GameObject`.
+
+4. **Configura la UI**
+
+Añade un `Dropdown (legacy)` a tu Canvas.
+Crea un `Panel` de Advertencia opcional para notificar cambios en la pantalla.
+Asigna los elementos correspondientes en el Inspector del `ResolutionSelector`.
+
+> [!NOTE]
+> Si utilizas el nuevo sistema de UI de Unity, puedes adaptar el script para trabajar con el componente `TMP_Dropdown` de `TextMeshPro`.
+
+---
+
+## ⚙️ Configuración
+
+### Ajuste de Resoluciones Soportadas
+
+El script viene con listas predefinidas de resoluciones para diferentes plataformas. Puedes seleccionar y modificar estas listas según tus necesidades.
+
+#### Resoluciones para Steam Deck
 
 ```csharp
 private Resolution[] supportedResolutions = new Resolution[] {
@@ -73,9 +106,8 @@ private Resolution[] supportedResolutions = new Resolution[] {
     new Resolution() { width = 1920, height = 1080 }
 };
 ```
-## Resoluciones para Escritorio (Windows, macOS, Linux)
 
-Para configuraciones más amplias en sistemas de escritorio, puedes usar esta lista de resoluciones:
+#### Resoluciones para Escritorio (Windows, macOS, Linux)
 
 ```csharp
 private Resolution[] supportedResolutions = new Resolution[] {
@@ -95,70 +127,142 @@ private Resolution[] supportedResolutions = new Resolution[] {
 };
 ```
 
-Puedes modificar estas listas para adaptarlas a otras plataformas o necesidades específicas.
+> [!WARNING]
+> Asegúrate de que las resoluciones soportadas sean compatibles con los monitores objetivo para evitar problemas de visualización.
 
-## Uso
+### Configuración del Inspector
 
-1. **Configuración Inicial:**
+- **Dropdown**: Asigna el componente `Dropdown` de tu UI.
+- **Warning Panel**: Asigna un `panel` que se mostrará cuando se detecten cambios en las pantallas.
+- **Continue Button**: `Botón` para confirmar y aplicar cambios tras detectar una nueva pantalla.
+- **Resolution Text**: `Texto` opcional para mostrar la resolución actual al usuario.
 
-Al iniciar el juego, el script cargará la última configuración de resolución seleccionada.
-El dropdown se ajustará automáticamente al valor correspondiente.
+---
 
-2. **Cambio de Resolución:**
-   
-Los jugadores pueden seleccionar una resolución diferente en el dropdown.
-Para aplicar la nueva configuración de resolución, el script automáticamente ajustará la resolución de pantalla.
+## 🚀 Uso
 
-3. **Detección Automática de Cambios de Pantalla:**
-   
-El script verifica periódicamente si hay cambios en la configuración de pantallas conectadas (como al conectar o desconectar monitores) y actualiza las opciones disponibles en el dropdown.
+### Inicialización Automática
 
-## Personalización y Uso Avanzado
+- Al iniciar el juego, el script detecta la resolución óptima y la establece automáticamente.
+- Carga la última resolución seleccionada si existe una guardada.
 
-1. **Modificar las Resoluciones Disponibles**
+### Selección Manual de Resolución
 
-Puedes cambiar las opciones de resolución disponibles modificando el array`[]` `supportedResolutions` en el script:
+- El usuario puede seleccionar una resolución diferente desde el Dropdown en cualquier momento.
+- El cambio se aplica inmediatamente y se guarda para futuras sesiones.
+
+### Detección de Cambios de Pantalla
+
+- Si se conecta o desconecta un monitor, el script muestra el Warning Panel y actualiza las opciones disponibles.
+- Al presionar el `Continue Button`, se aplica la mejor resolución disponible.
+
+> [!TIP]
+> Puedes personalizar el intervalo de detección de cambios de pantalla modificando el valor en la corrutina `CheckForDisplayChanges()` dentro del script.
+
+---
+
+## 🖼️ Ejemplos Visuales
+
+### Demo en Acción
+
+Demostración del selector de resolución en el inspector.
+
+![Resolution Selector Script en el Inspector](.image/Inspector.png)
+
+![Configuración del Resolution Selector en el Inspector](.image/DropdownResolutionValues.png)
+
+### Interacción con el Usuario
+
+El usuario seleccionando diferentes resoluciones desde el Dropdown.
+
+![DropdownResolution](https://github.com/user-attachments/assets/bb217ef8-7a1d-4962-ae5a-ae70ad10466b)
+
+---
+
+## 📚 Documentación Detallada
+
+### Métodos Principales
+
+- **Start()**: Inicializa el selector y configura las opciones disponibles.
+  
+- **OnDropdownValueChanged(int index)**: Maneja el cambio de selección en el Dropdown y aplica la nueva resolución.
+  
+- **CheckForDisplayChanges()**: Corrutina que verifica periódicamente cambios en las pantallas conectadas.
+  
+- **SetResolution(int width, int height)**: Aplica la resolución especificada y ajusta la pantalla en consecuencia.
+
+### Personalización Avanzada
+
+Puedes extender la funcionalidad del script añadiendo métodos y eventos personalizados. Por ejemplo:
+
+#### Agregar Soporte para Pantalla Completa
 
 ```csharp
-private Resolution[] supportedResolutions = new Resolution[] {
-    new Resolution() { width = 640, height = 480 },
-    new Resolution() { width = 960, height = 540 },
-    new Resolution() { width = 1280, height = 720 },
-    new Resolution() { width = 1920, height = 1080 },
-    new Resolution() { width = 3840, height = 2160 }
-};
+public void ToggleFullScreen(bool isFullScreen)
+{
+    Screen.fullScreen = isFullScreen;
+}
 ```
 
-2. **Añadir Más Funcionalidades**
-
-Si deseas agregar más funcionalidades, como un evento que se dispare al cambiar la resolución, puedes hacerlo así:
+#### Responder a Eventos de Cambio de Resolución
 
 ```csharp
-public delegate void ResolutionChangedDelegate(Resolution newResolution);
-public event ResolutionChangedDelegate OnResolutionChanged;
+public event Action<Resolution> OnResolutionChanged;
 
-public void SetResolution(int width, int height)
+private void SetResolution(int width, int height)
 {
     Screen.SetResolution(width, height, Screen.fullScreen);
     OnResolutionChanged?.Invoke(new Resolution() { width = width, height = height });
 }
 ```
 
-Luego, puedes suscribirte a este evento en otros scripts de tu proyecto para realizar acciones basadas en la nueva resolución.
+> [!NOTE]
+> Consulta el código fuente completo para más detalles y comentarios que te ayudarán a entender y modificar el comportamiento según tus necesidades.
 
-## Requisitos
+---
 
-- Unity 2021.3.15f1 o superior.
-- Se requiere el uso del `Dropdown Legacy` en el Canvas de Unity.
+## 🤝 Contribuciones
 
-## Contribuciones
+¡Las contribuciones son bienvenidas! Si deseas mejorar este proyecto, sigue estos pasos:
 
-¡Las contribuciones son bienvenidas! Si tienes mejoras, ideas, o encuentras un bug, siéntete libre de abrir un issue o enviar un pull request.
+1. Haz un Fork del repositorio.
+2. Crea una rama nueva: `git checkout -b feature/nueva-funcionalidad`.
+3. Realiza tus cambios y haz commit: `git commit -m 'Agrega nueva funcionalidad'`.
+4. Haz push a la rama: `git push origin feature/nueva-funcionalidad`.
+5. Abre un Pull Request.
 
-## Licencia
+> [!TIP]
+> Asegúrate de seguir las convenciones de codificación y agregar comentarios claros para facilitar la revisión.
 
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [Licencia](LICENSE.md) para más detalles.
+---
 
-## Políticas de Privacidad
+## 📄 Licencia
+
+Este proyecto está licenciado bajo la licencia MIT. Esto significa que eres libre de usar, modificar y distribuir este software de acuerdo con los términos de la licencia.
+Consulta el archivo [Licencia](LICENSE.md) para más detalles.
+
+---
+
+## 🔰 Políticas de Privacidad
 
 Este proyecto no recopila información personal ni técnica de los usuarios. Para más detalles, consulta nuestras [Políticas de Privacidad](SECURITY.md).
+
+---
+
+## 🔗 Enlaces de Interés
+
+- **Portfolio Personal**: [![Twitter Follow](https://img.shields.io/twitter/follow/K41t0M?style=social)](https://twitter.com/K41t0M)
+- **Itch.io / Videojuegos Publicados**: [![Itch.io](https://img.shields.io/badge/KaitoArtz-%23FF0B34.svg?logo=Itch.io&logoColor=white)](https://kaitoartz.itch.io)
+- **Otros Proyectos en Unity**: [![GitHub](https://img.shields.io/badge/KaitoArtz-%23121011.svg?logo=github&logoColor=white)](https://github.com/KaitoOwO)
+
+---
+
+## 📞 Soporte
+
+Si tienes preguntas, problemas o sugerencias, no dudes en contactarme:
+
+- **Email**: kaitoartz.info@gmail.com
+- **Twitter**: [@K41t0M](https://twitter.com/K41t0M)
+- **Discord**: kaitoowo
+
+También puedes abrir un [![GitHub Pages](https://img.shields.io/badge/%20Issues-121013?logo=github&logoColor=white)](https://github.com/KaitoOwO/DropdownResolution/issues) en este repositorio, y te responderé lo antes posible.
