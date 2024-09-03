@@ -1,164 +1,156 @@
-# FPS Selector for Unity
+# Resolution Selector for Unity
 
-👋 ¡Hola, desarrolladores de Unity! Soy KaitoArtz, y estoy emocionado de compartir este proyecto contigo.
+✨🌷 ¡Hola, pequeños devs!💖 Soy KaitoArtz, y estoy emocionado de compartir este proyecto contigo.
 
-🚀 **¿Quieres estar al día con mis próximos proyectos de Unity?** ¡Sígueme en mis redes sociales!
+‼🥺 **¿Quieres estar al día con mis próximos proyectos de Unity?** ¡Sígueme en mis redes sociales!
 
 - [<img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" />](https://x.com/K41t0M)
 - [<img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" />](https://www.instagram.com/kaitoartzz/#)
 - [<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />](https://linkedin.com/in/TuPerfil)
 - [<img src="https://img.shields.io/badge/daily.dev-CE3DF3?style=for-the-badge&logo=dailydotdev&logoColor=white" />](https://app.daily.dev/kaitoartz)
 
-No te pierdas mis futuros proyectos que ayudarán a tus proyectos en Unity.
+No te pierdas mis futuros proyectos que ayudarán a mejorar tus proyectos en Unity.
 
 ---
 
-Este repositorio contiene un script de C# diseñado para Unity (versión 2021.3.15f1 o superior) que permite a los desarrolladores seleccionar y ajustar el framerate (FPS) de su juego de manera sencilla. Con este script, puedes ofrecer a los jugadores la opción de cambiar entre diferentes configuraciones de FPS a través de un menú desplegable en la UI.
+Este repositorio contiene un script de C# diseñado para Unity (versión 2021.3.15f1 o superior) que permite a los desarrolladores agregar un selector de resolución a través de un menú desplegable (`Dropdown`) en la UI de Unity. Este script es ideal para proyectos que necesitan adaptarse a diferentes resoluciones de pantalla, incluyendo opciones específicas para Steam Deck y plataformas de escritorio.
 
-![FPS Selector Script en el Inspector](.image/Ingame.png)
+![Resolution Selector Script en el Inspector](.image/ResolutionSelector.png)
 
-*Vista del script FPS Selector en game de Unity*
+*Vista del script Resolution Selector en el inspector de Unity*
 
 ## Características
-- **Selección de FPS**: Los jugadores pueden elegir entre 30, 60, 120 FPS o desbloquear el FPS.
-- **Integración Sencilla**: Fácil de integrar en cualquier proyecto de Unity.
-- **Persistencia de Configuración**: La selección de FPS se guarda y se aplica automáticamente en futuras sesiones del juego.
+
+- **Selector de Resolución**: Permite a los jugadores seleccionar entre múltiples resoluciones compatibles.
+- **Detección Automática de Cambios**: El script detecta automáticamente cambios en las pantallas conectadas y actualiza las opciones disponibles.
+- **Integración Sencilla**: Fácil de agregar y configurar en cualquier proyecto de Unity.
+- **Persistencia de Configuración**: La selección de resolución se guarda y se aplica automáticamente en futuras sesiones del juego.
 
 ## Instalación
 
-1. **Descargar el Script**: Clona este repositorio o descarga el archivo `FPSSelector.cs`.
-2. **Importar a Unity**: Coloca el archivo `FPSSelector.cs` en la carpeta `Scripts` de tu proyecto de Unity.
+1. **Descargar el Script**: Clona este repositorio o descarga el archivo `ResolutionSelector.cs`.
+2. **Importar a Unity**: Coloca el archivo `ResolutionSelector.cs` en la carpeta `Scripts` de tu proyecto de Unity.
 3. **Agregar el Script a un GameObject**:
    - Crea un nuevo `GameObject` vacío en tu escena o utiliza uno existente.
-   - Arrastra el script `FPSSelector` al `GameObject`.
+   - Arrastra el script `ResolutionSelector` al `GameObject`.
 4. **Configurar el Dropdown en la UI**:
-   - En tu escena, añade un componente `TMP_Dropdown` a la UI.
-   - En el inspector, asigna el `TMP_Dropdown` al campo `fpsDropdown` en el script `FPSSelector`.
+   - En tu escena, añade un componente `Dropdown` (legacy) a la UI.
+   - Asigna el `Dropdown` al campo `dropdown` en el script `ResolutionSelector`.
+   - En el elemento `Dropdown` del inspector, al campo `On Value Changed (int32)` de valor `Runtime Only` arrastra el script `ResolutionSelector` y selecciona `ResolutionSelector` -> `OnDropdownValueChanged`
+
+Para que el dropdown funcione, asegúrate de configurar los siguientes valores en el Inspector:
+
+![Resolution Selector Script en el Inspector](.image/Inspector.png)
 
 ## Configuración en el Inspector
 
 Para que el script funcione correctamente, asegúrate de configurar los siguientes valores en el Inspector:
 
-![Configuración del FPS Selector en el Inspector](.image/Dropdownvalues.png)
+![Configuración del Resolution Selector en el Inspector](.image/DropdownResolutionValues.png)
 
-*Configuración necesaria para el FPS Selector en el Inspector de Unity*
+*Configuración necesaria para el Resolution Selector en el Inspector de Unity*
 
-1. **FPS Dropdown**: Asigna aquí tu TMP_Dropdown de la UI.
-2. **Selected FPS**: Este valor se actualizará automáticamente según la selección del usuario.
-3. **Default FPS**: Establece el FPS por defecto (por ejemplo, 60).
-4. **Save Key**: Nombre de la clave para guardar la configuración de FPS (por ejemplo, "SelectedFPS").
+1. **Dropdown**: Asigna aquí tu `Dropdown` (legacy) de la UI.
+2. **Warning Panel**: Asigna un panel de advertencia que se muestre cuando se detecte un cambio en las pantallas conectadas.
+3. **Continue Button**: Asigna el botón que oculta el panel de advertencia y actualiza la configuración de resolución.
+4. **Resolution Text**: Asigna un `Text` para mostrar la resolución seleccionada.
+
+## Resoluciones Disponibles
+
+El script incluye diferentes listas de resoluciones para diversas plataformas, incluyendo Steam Deck y sistemas de escritorio (Windows, macOS, Linux). Puedes habilitar o modificar estas listas según tus necesidades:
+
+### Resoluciones para Steam Deck
+
+Si deseas usar resoluciones específicas para Steam Deck, puedes activar la siguiente lista en el script:
+
+```csharp
+private Resolution[] supportedResolutions = new Resolution[] {
+    new Resolution() { width = 640, height = 480 },  //(4:3)
+    new Resolution() { width = 960, height = 720 },  //(4:3)
+    new Resolution() { width = 1280, height = 720 },
+    new Resolution() { width = 1066, height = 800 }, //(4:3)
+    new Resolution() { width = 1280, height = 800 },
+    new Resolution() { width = 1440, height = 1080 }, //(4:3)
+    new Resolution() { width = 1920, height = 1080 }
+};
+```
+## Resoluciones para Escritorio (Windows, macOS, Linux)
+
+Para configuraciones más amplias en sistemas de escritorio, puedes usar esta lista de resoluciones:
+
+```csharp
+private Resolution[] supportedResolutions = new Resolution[] {
+    new Resolution() { width = 640, height = 480 },
+    new Resolution() { width = 960, height = 540 },
+    new Resolution() { width = 960, height = 720 },
+    new Resolution() { width = 1280, height = 720 },
+    new Resolution() { width = 1366, height = 768 },
+    new Resolution() { width = 1066, height = 800 },
+    new Resolution() { width = 1280, height = 800 },
+    new Resolution() { width = 1440, height = 900 },
+    new Resolution() { width = 1440, height = 1080 },
+    new Resolution() { width = 1920, height = 1080 },
+    new Resolution() { width = 2560, height = 1080 },
+    new Resolution() { width = 2880, height = 2160 },
+    new Resolution() { width = 3840, height = 2160 }
+};
+```
+
+Puedes modificar estas listas para adaptarlas a otras plataformas o necesidades específicas.
 
 ## Uso
 
-1. **Configuración Inicial**:
-   - Al iniciar el juego, el script cargará la última configuración de FPS seleccionada.
-   - El dropdown se ajustará automáticamente al valor correspondiente.
+1. **Configuración Inicial:**
 
-2. **Cambio de FPS**:
-   - Los jugadores pueden seleccionar un valor diferente en el dropdown.
-   - Para aplicar la nueva configuración de FPS, llama al método `ApplyFPSSetting()` desde el script.
+Al iniciar el juego, el script cargará la última configuración de resolución seleccionada.
+El dropdown se ajustará automáticamente al valor correspondiente.
+
+2. **Cambio de Resolución:**
+   
+Los jugadores pueden seleccionar una resolución diferente en el dropdown.
+Para aplicar la nueva configuración de resolución, el script automáticamente ajustará la resolución de pantalla.
+
+3. **Detección Automática de Cambios de Pantalla:**
+   
+El script verifica periódicamente si hay cambios en la configuración de pantallas conectadas (como al conectar o desconectar monitores) y actualiza las opciones disponibles en el dropdown.
 
 ## Personalización y Uso Avanzado
 
-### Modificar las opciones de FPS disponibles
+1. **Modificar las Resoluciones Disponibles**
 
-Puedes cambiar las opciones de FPS disponibles modificando los métodos `GetFPSFromDropdownIndex` y `GetDropdownIndexFromFPS`. Por ejemplo, si quieres añadir una opción de 90 FPS:
+Puedes cambiar las opciones de resolución disponibles modificando el array`[]` `supportedResolutions` en el script:
 
 ```csharp
-public int GetFPSFromDropdownIndex(int index)
-{
-    switch (index)
-    {
-        case 0: return 30;
-        case 1: return 60;
-        case 2: return 90;  // Nueva opción de 90 FPS
-        case 3: return 120;
-        case 4: return 0; // Unlock FPS
-        default: return 60;
-    }
-}
+private Resolution[] supportedResolutions = new Resolution[] {
+    new Resolution() { width = 640, height = 480 },
+    new Resolution() { width = 960, height = 540 },
+    new Resolution() { width = 1280, height = 720 },
+    new Resolution() { width = 1920, height = 1080 },
+    new Resolution() { width = 3840, height = 2160 }
+};
+```
 
-public int GetDropdownIndexFromFPS(int fps)
+2. **Añadir Más Funcionalidades**
+
+Si deseas agregar más funcionalidades, como un evento que se dispare al cambiar la resolución, puedes hacerlo así:
+
+```csharp
+public delegate void ResolutionChangedDelegate(Resolution newResolution);
+public event ResolutionChangedDelegate OnResolutionChanged;
+
+public void SetResolution(int width, int height)
 {
-    switch (fps)
-    {
-        case 30: return 0;
-        case 60: return 1;
-        case 90: return 2;  // Nueva opción de 90 FPS
-        case 120: return 3;
-        case 0: return 4; // Unlock FPS
-        default: return 1; // Default to 60 FPS
-    }
+    Screen.SetResolution(width, height, Screen.fullScreen);
+    OnResolutionChanged?.Invoke(new Resolution() { width = width, height = height });
 }
 ```
 
-Recuerda actualizar también las opciones en tu `TMP_Dropdown` en la UI de Unity para que coincidan con estos cambios.
-
-### Aplicar FPS automáticamente al cambiar el dropdown
-
-Si quieres que el FPS se aplique inmediatamente al cambiar el dropdown, puedes modificar el método `DropdownValueChanged`:
-
-```csharp
-public void DropdownValueChanged(TMP_Dropdown change)
-{
-    selectedFPS = GetFPSFromDropdownIndex(change.value);
-    ApplyFPSSetting(); // Aplica el FPS inmediatamente
-}
-```
-
-### Añadir un evento de cambio de FPS
-
-Si quieres notificar a otras partes de tu juego cuando cambia el FPS, puedes añadir un evento:
-
-```csharp
-public delegate void FPSChangedDelegate(int newFPS);
-public event FPSChangedDelegate OnFPSChanged;
-
-public void ApplyFPSSetting()
-{
-    SetFPS(selectedFPS);
-    OnFPSChanged?.Invoke(selectedFPS); // Invoca el evento
-}
-```
-
-Luego, en otros scripts, puedes suscribirte a este evento:
-
-```csharp
-void Start()
-{
-    FPSSelector fpsSelector = FindObjectOfType<FPSSelector>();
-    fpsSelector.OnFPSChanged += HandleFPSChanged;
-}
-
-void HandleFPSChanged(int newFPS)
-{
-    Debug.Log($"FPS changed to: {newFPS}");
-    // Realiza acciones basadas en el nuevo FPS
-}
-```
-
-### Guardar y cargar configuraciones personalizadas
-
-Puedes extender la funcionalidad para guardar configuraciones personalizadas:
-
-```csharp
-public void SaveCustomFPSSetting(string settingName, int fps)
-{
-    PlayerPrefs.SetInt($"CustomFPS_{settingName}", fps);
-}
-
-public int LoadCustomFPSSetting(string settingName)
-{
-    return PlayerPrefs.GetInt($"CustomFPS_{settingName}", 60); // Default to 60 if not found
-}
-```
-
-Estas modificaciones te permiten adaptar el script FPSSelector a las necesidades específicas de tu proyecto.
+Luego, puedes suscribirte a este evento en otros scripts de tu proyecto para realizar acciones basadas en la nueva resolución.
 
 ## Requisitos
 
 - Unity 2021.3.15f1 o superior.
-- `TextMeshPro` debe estar instalado en tu proyecto para usar `TMP_Dropdown`.
+- Se requiere el uso del `Dropdown Legacy` en el Canvas de Unity.
 
 ## Contribuciones
 
